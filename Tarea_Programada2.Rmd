@@ -1,0 +1,53 @@
+---
+title: "Tarea programada 2"
+author: "Nancy Lopez Gomez"
+date: "2023-08-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(readr)
+library(readxl)
+library(tidyr)
+library(janitor) 
+library(lubridate) 
+library(ggplot2)
+library(gt)
+library(leaflet)
+library(writexl)
+```
+a. Cree un archivo Rmarkdown para resolver esta práctica programada. En el chunk de setup cargue las
+librerías que considere necesarias para resolver la práctica. Los datos para trabajar puede cargarlos con
+la función read_csv de readr directamente de la siguiente dirección: “https://raw.githubusercontent.
+com/isa229/programacion_analisis_datos_ii/main/air_quality_index.csv”. (1pto)
+
+```{r}
+datos <- "https://raw.githubusercontent.com/isa229/programacion_analisis_datos_ii/main/air_quality_index.csv"
+datos_air <- read_csv(datos)
+```
+
+b) Cuántas categorías diferentes de AQI (AQI Category) hay en este conjunto de datos? Cuáles son?
+(2pts)
+
+
+```{r}
+nombres_columnas <- c("...1", "Pais", "Ciudad", "AQI_Value", "AQI_Category", "lat", "ing")
+colnames(datos_air) <- nombres_columnas
+```
+
+Cantidad de categorias 
+
+```{r}
+datos_air |> 
+  distinct(AQI_Category) |> 
+  count()
+```
+
+¿Cuales son? 
+
+```{r}
+categorias_diferentes <- datos_air |> 
+  distinct(AQI_Category)
+```
